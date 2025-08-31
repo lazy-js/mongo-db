@@ -1,0 +1,1 @@
+{"version":3,"file":"documentToObject.js","sourceRoot":"","sources":["../../../src/utils/documentToObject.ts"],"names":[],"mappings":";;;AAAA,kCAGC;AAHD,SAAgB,WAAW,CAAI,GAAQ;IACrC,IAAI,OAAO,GAAG,CAAC,MAAM,KAAK,UAAU;QAAE,OAAO,GAAG,CAAC,MAAM,EAAO,CAAC;IAC/D,OAAO,IAAI,CAAC;AACd,CAAC;AAEY,QAAA,4BAA4B,GAAG,WAAW,CAAC"}
