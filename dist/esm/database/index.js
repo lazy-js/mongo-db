@@ -1,14 +1,29 @@
 import mongoose from 'mongoose';
 import { EventEmitter } from 'events';
 export class Database extends EventEmitter {
+    emit(event, ...args) {
+        return super.emit(event, ...args);
+    }
+    on(event, listener) {
+        return super.on(event, listener);
+    }
+    once(event, listener) {
+        return super.once(event, listener);
+    }
     constructor(url) {
         super();
         this.url = url;
     }
     async connect() {
-        await mongoose.connect(this.url);
-        this.emit('connected');
-        return this;
+        try {
+            await mongoose.connect(this.url);
+            this.emit('connected');
+            return this;
+        }
+        catch (err) {
+            this.emit('error', err);
+            throw err;
+        }
     }
     async disconnect() {
         await mongoose.connection.close();

@@ -7,14 +7,29 @@ exports.Database = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const events_1 = require("events");
 class Database extends events_1.EventEmitter {
+    emit(event, ...args) {
+        return super.emit(event, ...args);
+    }
+    on(event, listener) {
+        return super.on(event, listener);
+    }
+    once(event, listener) {
+        return super.once(event, listener);
+    }
     constructor(url) {
         super();
         this.url = url;
     }
     async connect() {
-        await mongoose_1.default.connect(this.url);
-        this.emit('connected');
-        return this;
+        try {
+            await mongoose_1.default.connect(this.url);
+            this.emit('connected');
+            return this;
+        }
+        catch (err) {
+            this.emit('error', err);
+            throw err;
+        }
     }
     async disconnect() {
         await mongoose_1.default.connection.close();
